@@ -26,13 +26,13 @@ class MNISTNet(nn.Module):
         self.dropout = nn.Dropout(0.5)
 
     def forward(self, x):
-        # Conv1 -> ReLU -> MaxPool
+        # Conv1 -> ReLU -> AvgPool
         x = F.relu(self.conv1(x))
-        x = F.max_pool2d(x, 2)
+        x = F.avg_pool2d(x, 2)
 
-        # Conv2 -> ReLU -> MaxPool
+        # Conv2 -> ReLU -> AvgPool
         x = F.relu(self.conv2(x))
-        x = F.max_pool2d(x, 2)
+        x = F.avg_pool2d(x, 2)
 
         # Flatten
         x = x.view(-1, 64 * 7 * 7)
